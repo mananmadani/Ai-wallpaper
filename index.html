@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#6200ea">
+    <title>AI Wallpaper Generator</title>
+    <link rel="manifest" href="manifest.json">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <h1>AI Wallpaper Generator</h1>
+        
+        <div class="input-section">
+            <textarea id="prompt" placeholder="Describe your wallpaper... (e.g., mountain sunset with stars)"></textarea>
+            
+            <select id="resolution">
+                <option value="1920x1080">Desktop (1920x1080)</option>
+                <option value="2560x1440">Desktop 2K (2560x1440)</option>
+                <option value="1080x1920">Mobile (1080x1920)</option>
+                <option value="1080x2400">Mobile Tall (1080x2400)</option>
+            </select>
+            
+            <button id="generateBtn">Generate Wallpaper</button>
+        </div>
+        
+        <div id="loading" style="display: none;">Generating your wallpaper...</div>
+        
+        <div id="result" style="display: none;">
+            <img id="generatedImage" alt="Generated Wallpaper">
+            <button id="downloadBtn">Download Wallpaper</button>
+        </div>
+    </div>
+    
+    <script src="app.js"></script>
+</body>
+</html>
