@@ -36,9 +36,27 @@ async function generateWallpaper() {
     };
 }
 
-function downloadWallpaper() {
-    const link = document.createElement('a');
-    link.href = generatedImage.src;
-    link.download = `wallpaper-${Date.now()}.png`;
-    link.click();
+async function downloadWallpaper() {
+    try {
+        // Fetch the image as a blob to bypass CORS restrictions
+        const response = await fetch(generatedImage.src);
+        const blob = await response.blob();
+        
+        // Create a temporary URL for the blob
+        const blobUrl = URL.createObjectURL(blob);
+        
+        // Create download link
+        const link = document.createElement('a');
+        link.href = blobUrl;
+        link.download = `wallpaper-${Date.now()}.png`;
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+        
+        // Clean up the blob URL
+        URL.revokeObjectURL(blobUrl);
+    } catch (error) {
+        console.error('Download failed:', error);
+        alert('Download failed. Please try right-click and "Save image as..."');
+    }
 }
